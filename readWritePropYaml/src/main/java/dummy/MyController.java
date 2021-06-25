@@ -37,7 +37,7 @@ public class MyController {
 	
 	@GetMapping("/readyml")
 	public void readyml() throws FileNotFoundException {
-		InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("application.yml");
+		InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("application.yml");
 		Yaml yaml = new Yaml();
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(yaml.load(inputStream),LinkedHashMap.class);
