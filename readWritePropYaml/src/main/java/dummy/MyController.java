@@ -27,8 +27,7 @@ public class MyController {
 
 	@GetMapping("/readprop")
 	public void readprop() throws IOException {
-		InputStream stream = this.getClass().getClassLoader().getResourceAsStream("application.properties");
-	    prop.load(stream); 
+	    prop.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("anyname.properties")); 
 	    mymap = Maps.newHashMap(Maps.fromProperties(prop));
 	    for (Entry<String, String> entry : mymap.entrySet()) {
 			 if (entry.getValue().indexOf("http://") != -1) 
